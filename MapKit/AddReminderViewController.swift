@@ -19,6 +19,7 @@ class AddReminderViewController: UIViewController, CLLocationManagerDelegate {
 
         let regionSet = self.locationManager!.monitoredRegions
         let regions = regionSet.allObjects
+        println(regions.count)
 
     }
     

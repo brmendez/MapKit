@@ -16,6 +16,7 @@
 		45F338FD1A082CC400606138 /* MapKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F338FC1A082CC400606138 /* MapKitTests.swift */; };
 		45F339071A082CCE00606138 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F339061A082CCE00606138 /* MapKit.framework */; };
 		45F339091A08669500606138 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F339081A08669500606138 /* AddReminderViewController.swift */; };
+		45F3390D1A0A14F900606138 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F3390C1A0A14F900606138 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		45F338FC1A082CC400606138 /* MapKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitTests.swift; sourceTree = "<group>"; };
 		45F339061A082CCE00606138 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		45F339081A08669500606138 /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		45F3390C1A0A14F900606138 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				45F338ED1A082CC400606138 /* Images.xcassets */,
 				45F338EF1A082CC400606138 /* LaunchScreen.xib */,
 				45F338E51A082CC400606138 /* MapKit.xcdatamodeld */,
+				45F3390C1A0A14F900606138 /* Reminder.swift */,
 				45F338E11A082CC400606138 /* Supporting Files */,
 			);
 			path = MapKit;
@@ -231,6 +234,7 @@
 				45F338E91A082CC400606138 /* ViewController.swift in Sources */,
 				45F338E41A082CC400606138 /* AppDelegate.swift in Sources */,
 				45F338E71A082CC400606138 /* MapKit.xcdatamodeld in Sources */,
+				45F3390D1A0A14F900606138 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
