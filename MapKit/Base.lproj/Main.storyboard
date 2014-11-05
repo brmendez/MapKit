@@ -26,7 +26,7 @@
         <!--Item 2-->
         <scene sceneID="OPk-ur-Vln">
             <objects>
-                <viewController storyboardIdentifier="REMINDER_VC" id="OMM-gh-WkX" customClass="AddReminderViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OMM-gh-WkX" customClass="ViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1th-VD-wCf"/>
                         <viewControllerLayoutGuide type="bottom" id="4mn-ZZ-Apx"/>
@@ -88,6 +88,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nC1-QH-Aqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="930" y="120"/>
+        </scene>
+        <!--Add Reminder View Controller-->
+        <scene sceneID="Ggz-U9-xQQ">
+            <objects>
+                <viewController storyboardIdentifier="REMINDER_VC" id="55w-cF-Ayy" customClass="AddReminderViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SjK-Ua-NDt"/>
+                        <viewControllerLayoutGuide type="bottom" id="9kn-Nd-PT6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QhL-XX-3yp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgS-EM-lef">
+                                <rect key="frame" x="251" y="285" width="99" height="30"/>
+                                <state key="normal" title="Add Reminder">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressAddReminderButton:" destination="55w-cF-Ayy" eventType="touchUpInside" id="Uvf-nE-xlt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="GgS-EM-lef" secondAttribute="centerY" id="shf-Qg-2DA"/>
+                            <constraint firstAttribute="centerX" secondItem="GgS-EM-lef" secondAttribute="centerX" id="wNc-fU-yL3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7NE-bf-Fcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557" y="120"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hp6-64-mcn">

@@ -17,10 +17,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil) //will get any notification with name: perameter. Nil gives EVERY post, we don't want that. Also make sure to UNREGISTER
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
         self.mapView.addGestureRecognizer(longPress)
-        self.mapView.delegate = self
         self.locationManager.delegate = self
+        self.mapView.delegate = self
         
         switch CLLocationManager.authorizationStatus() as CLAuthorizationStatus {
         case .Authorized:
@@ -36,9 +39,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         default:
             println("default")
         }
-        
-        
-        
     }
     
     func didLongPressMap(sender: UILongPressGestureRecognizer) {
@@ -49,17 +49,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             var annotation = MKPointAnnotation()
             annotation.coordinate = touchCoordinate
             annotation.title = "Add Reminder"
-            self.mapView.addAnnotation(annotation)
-            
+            self.mapView.addAnnotation(annotation) //drops the pin
         }
     }
-
+    
+    //unregister
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+    }
+    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "ANNOTATION")
         annotationView.animatesDrop = true
-        annotationView.canShowCallout = true
+        annotationView.canShowCallout = true //shows popup info bubble
         let addButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as UIButton
-        annotationView.rightCalloutAccessoryView = addButton
+        annotationView.rightCalloutAccessoryView = addButton //adds the plus button to the right
         return annotationView
     }
     
@@ -69,6 +74,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         reminderVC.selectedAnnotation = view.annotation
         self.presentViewController(reminderVC, animated: true, completion: nil)
     }
+    
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        
+        renderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.20)
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.lineWidth = 0.5
+        
+        return renderer
+    }
+    
+//    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+//        let renderer = MKCircleRenderer(overlay: overlay)
+//        renderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.20)
+////        renderer.strokeColor = UIColor.blackColor()
+////        renderer.strokePath(<#path: CGPath!#>, inContext: <#CGContext!#>)
+//        return renderer
+//        
+//    }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         println("you are inside the region!")
@@ -86,23 +111,54 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             println("Default Authorization Change")
         }
     }
+    
+    func reminderAdded(notification : NSNotification) {
+        println("reminder added!")
+        
+        let userInfo = notification.userInfo!
+        let geoRegion = userInfo["region"] as CLCircularRegion
+        
+        let overlay = MKCircle(centerCoordinate: geoRegion.center, radius: geoRegion.radius)
+        self.mapView.addOverlay(overlay)
+
+    }
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         println("location update")
         
         
-        if let location = locations.last as? CLLocation {
-            println(location.coordinate.latitude)
+        var lastLocation = locations.last as CLLocation
+        let interval = lastLocation.timestamp.timeIntervalSinceNow
+            if interval < 20 {
+            println(lastLocation.coordinate.latitude)
         }
     }
     
-    
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
