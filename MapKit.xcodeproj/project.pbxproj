@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45340C751A0ACC7B00368F75 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45340C741A0ACC7B00368F75 /* CloudKit.framework */; };
+		45340C791A0AD69B00368F75 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45340C781A0AD69B00368F75 /* ReminderTableViewController.swift */; };
 		45F338E41A082CC400606138 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F338E31A082CC400606138 /* AppDelegate.swift */; };
 		45F338E71A082CC400606138 /* MapKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45F338E51A082CC400606138 /* MapKit.xcdatamodeld */; };
 		45F338E91A082CC400606138 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F338E81A082CC400606138 /* ViewController.swift */; };
@@ -30,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45340C731A0ACC7000368F75 /* MapKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MapKit.entitlements; sourceTree = "<group>"; };
+		45340C741A0ACC7B00368F75 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		45340C781A0AD69B00368F75 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewController.swift; sourceTree = "<group>"; };
 		45F338DE1A082CC400606138 /* MapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F338E21A082CC400606138 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F338E31A082CC400606138 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F339071A082CCE00606138 /* MapKit.framework in Frameworks */,
+				45340C751A0ACC7B00368F75 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +74,7 @@
 		45F338D51A082CC400606138 = {
 			isa = PBXGroup;
 			children = (
+				45340C741A0ACC7B00368F75 /* CloudKit.framework */,
 				45F339061A082CCE00606138 /* MapKit.framework */,
 				45F338E01A082CC400606138 /* MapKit */,
 				45F338F91A082CC400606138 /* MapKitTests */,
@@ -87,9 +94,11 @@
 		45F338E01A082CC400606138 /* MapKit */ = {
 			isa = PBXGroup;
 			children = (
+				45340C731A0ACC7000368F75 /* MapKit.entitlements */,
 				45F338E31A082CC400606138 /* AppDelegate.swift */,
 				45F338E81A082CC400606138 /* ViewController.swift */,
 				45F339081A08669500606138 /* AddReminderViewController.swift */,
+				45340C781A0AD69B00368F75 /* ReminderTableViewController.swift */,
 				45F338EA1A082CC400606138 /* Main.storyboard */,
 				45F338ED1A082CC400606138 /* Images.xcassets */,
 				45F338EF1A082CC400606138 /* LaunchScreen.xib */,
@@ -174,8 +183,12 @@
 				TargetAttributes = {
 					45F338DD1A082CC400606138 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 73PDWDYKS8;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -235,6 +248,7 @@
 				45F338E41A082CC400606138 /* AppDelegate.swift in Sources */,
 				45F338E71A082CC400606138 /* MapKit.xcdatamodeld in Sources */,
 				45F3390D1A0A14F900606138 /* Reminder.swift in Sources */,
+				45340C791A0AD69B00368F75 /* ReminderTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,9 +373,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MapKit/MapKit.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -369,9 +387,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MapKit/MapKit.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -428,6 +450,7 @@
 				45F339021A082CC400606138 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45F339031A082CC400606138 /* Build configuration list for PBXNativeTarget "MapKitTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +459,7 @@
 				45F339051A082CC400606138 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

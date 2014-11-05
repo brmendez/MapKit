@@ -26,7 +26,7 @@
         <!--Item 2-->
         <scene sceneID="OPk-ur-Vln">
             <objects>
-                <viewController id="OMM-gh-WkX" customClass="ViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OMM-gh-WkX" customClass="ReminderTableViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1th-VD-wCf"/>
                         <viewControllerLayoutGuide type="bottom" id="4mn-ZZ-Apx"/>
@@ -35,22 +35,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZv-Kt-6tv">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressAddReminderButton:" destination="OMM-gh-WkX" eventType="touchUpInside" id="60C-OA-HWF"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oPx-td-MgF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="REMINDER_CELL" selectionStyle="default" indentationWidth="10" reuseIdentifier="REMINDER_CELL" id="SWP-2Q-s7f">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWP-2Q-s7f" id="5kO-uL-cWJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="MZv-Kt-6tv" secondAttribute="centerY" id="4eq-Yo-01o"/>
-                            <constraint firstAttribute="centerX" secondItem="MZv-Kt-6tv" secondAttribute="centerX" id="BMK-hc-gCL"/>
+                            <constraint firstItem="oPx-td-MgF" firstAttribute="leading" secondItem="Qbj-do-XxE" secondAttribute="leadingMargin" constant="-16" id="DcW-eu-8aJ"/>
+                            <constraint firstItem="4mn-ZZ-Apx" firstAttribute="top" secondItem="oPx-td-MgF" secondAttribute="bottom" id="oMF-lQ-60x"/>
+                            <constraint firstItem="oPx-td-MgF" firstAttribute="top" secondItem="Qbj-do-XxE" secondAttribute="topMargin" id="phz-gf-82d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oPx-td-MgF" secondAttribute="trailing" constant="-16" id="yTu-hv-Ind"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="dJ5-c1-y3b"/>
+                    <connections>
+                        <outlet property="tableView" destination="oPx-td-MgF" id="ogE-b0-2Or"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vav-CS-plR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

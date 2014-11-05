@@ -14,6 +14,6 @@ class Reminder: NSManagedObject {
     @NSManaged var coordinate: String
     @NSManaged var date: NSDate
     @NSManaged var name: String
-    @NSManaged var radius: String
+    @NSManaged var radius: NSNumber
 
 }
