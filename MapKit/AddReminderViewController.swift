@@ -41,9 +41,8 @@ class AddReminderViewController: UIViewController {
         newReminder.date = NSDate()
         println("radius: \(geoRegion.radius)")
         
-        
-        
         var error : NSError?
+        
         self.managedObjectContext.save(&error)
         
         //error checking
