@@ -22,6 +22,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.managedObjectContext = appDelegate.managedObjectContext
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didGetCloudChanges:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: appDelegate.persistentStoreCoordinator)
         
         self.tableView.dataSource = self
         
@@ -37,8 +38,14 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         }
     }
     
+    func didGetCloudChanges(notification : NSNotification) {
+        println("in did get cloud changes")
+        self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(section)
+        println("number of rows: \(section)")
+        println("fetched results \(fetchedResultsController.fetchedObjects)")
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
@@ -48,6 +55,11 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
         cell.textLabel?.text = reminder.name
         return cell
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     

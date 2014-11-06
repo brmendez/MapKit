@@ -39,6 +39,7 @@ class AddReminderViewController: UIViewController {
         newReminder.name = geoRegion.identifier
         newReminder.radius = geoRegion.radius
         newReminder.date = NSDate()
+        println("radius: \(geoRegion.radius)")
         
         
         
