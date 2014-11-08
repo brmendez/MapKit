@@ -25,7 +25,6 @@ class AddReminderViewController: UIViewController {
         
 //        let regionSet = self.locationManager!.monitoredRegions
 //        let regions = regionSet.allObjects
-
     }
     
     
@@ -39,7 +38,7 @@ class AddReminderViewController: UIViewController {
         newReminder.name = geoRegion.identifier
         newReminder.radius = geoRegion.radius
         newReminder.date = NSDate()
-        println("radius: \(geoRegion.radius)")
+//        println("radius: \(geoRegion.radius)")
         
         var error : NSError?
         

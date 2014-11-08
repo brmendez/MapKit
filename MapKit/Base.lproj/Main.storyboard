@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-756" y="450"/>
         </scene>
-        <!--Item 2-->
+        <!--Reminder Table View Controller-->
         <scene sceneID="OPk-ur-Vln">
             <objects>
                 <viewController id="OMM-gh-WkX" customClass="ReminderTableViewController" customModule="MapKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,14 +56,20 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oPx-td-MgF" secondAttribute="trailing" constant="-16" id="yTu-hv-Ind"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="dJ5-c1-y3b"/>
+                    <navigationItem key="navigationItem" id="9hp-ix-GzP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="wMc-Am-F6i">
+                            <connections>
+                                <action selector="trashcanButtonPressed:" destination="OMM-gh-WkX" id="obz-nI-DQN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="oPx-td-MgF" id="ogE-b0-2Or"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vav-CS-plR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="783"/>
+            <point key="canvasLocation" x="1742" y="782"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="lWl-9d-aT6">
@@ -143,12 +149,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="mY2-YN-3v7" kind="relationship" relationship="viewControllers" id="d3h-Gq-QVq"/>
-                        <segue destination="OMM-gh-WkX" kind="relationship" relationship="viewControllers" id="vfS-KL-841"/>
+                        <segue destination="DgV-ab-sAe" kind="relationship" relationship="viewControllers" id="vfS-KL-841"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKf-u0-2p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="110" y="450"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="TIC-q9-qpq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DgV-ab-sAe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="dJ5-c1-y3b"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDY-Oa-7Qs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OMM-gh-WkX" kind="relationship" relationship="rootViewController" id="Zuv-h8-Eih"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AxS-aK-wS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="930" y="783"/>
         </scene>
     </scenes>
 </document>

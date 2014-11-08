@@ -50,6 +50,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             annotation.coordinate = touchCoordinate
             annotation.title = "Add Reminder"
             self.mapView.addAnnotation(annotation) //drops the pin
+            println(touchCoordinate.latitude)
+            println("long: \(touchCoordinate.longitude)")
         }
     }
     
@@ -97,6 +99,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         println("you are inside the region!")
+        if let circularRegion = region as? CLCircularRegion {
+            println("lat: \(circularRegion.center.latitude)")
+            println("long: \(circularRegion.center.longitude)")
+            if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+                var notification = UILocalNotification()
+                notification.alertAction = "Enter region!"
+                notification.alertBody = "You have entered the region!"
+                notification.fireDate = NSDate()
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
+        }
+    
     }
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {

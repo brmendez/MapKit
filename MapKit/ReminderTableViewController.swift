@@ -14,7 +14,9 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     var managedObjectContext : NSManagedObjectContext!
     var fetchedResultsController : NSFetchedResultsController!
     
+    var reminders = [Reminder]()
     
+    @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,6 +25,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         self.managedObjectContext = appDelegate.managedObjectContext
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didGetCloudChanges:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: appDelegate.persistentStoreCoordinator)
+        println(NSNotificationCenter)
         
         self.tableView.dataSource = self
         
@@ -40,17 +43,17 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     
     func didGetCloudChanges(notification : NSNotification) {
         println("in did get cloud changes")
-        self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+        self.managedObjectContext!.mergeChangesFromContextDidSaveNotification(notification)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         println("number of rows: \(section)")
-        println("fetched results \(fetchedResultsController.fetchedObjects)")
+//        println("fetched results \(fetchedResultsController.fetchedObjects)")
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("in cell for row!")
+//        println("in cell for row!")
         let cell = tableView.dequeueReusableCellWithIdentifier("REMINDER_CELL", forIndexPath: indexPath) as UITableViewCell
         let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
         cell.textLabel?.text = reminder.name
@@ -60,6 +63,27 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func trashcanButtonPressed(sender: AnyObject) {
+        
+        var fetchRequest = NSFetchRequest(entityName: "Reminder")
+        
+        var error : NSError?
+        
+        if let fetchedArray = self.managedObjectContext.executeFetchRequest(fetchRequest, error: &error) as? [Reminder] {
+            if fetchedArray.isEmpty {
+                println("reminders empty")
+            } else {
+                self.reminders = fetchedArray
+                println(fetchedArray.count)
+                for reminder in self.reminders {
+                    self.managedObjectContext.deleteObject(reminder)
+                }
+            }
+        }
+        
     }
     
     
